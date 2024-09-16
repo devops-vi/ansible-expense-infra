@@ -14,14 +14,19 @@
           - botocore
           - boto3
         executable: pip3.9
+        
     - name: Create EC2 instance
       amazon.aws.ec2_instance:
         name: "{{ item }}"
         instance_type: t3.micro
         image_id: ami-09c813fb71547fc4f
-        count: 3
+        #count: 3
         region: us-east-1
         vpc_subnet_id: subnet-07bfec4c75466fbda
       loop: "{{ instances }}"
       register: ec2_instances
+
+    - name: Print the ec2 instances
+      ansible.builtin.debug:
+        msg: "{{ ec2_instances }}"
     
