@@ -1,4 +1,4 @@
-- name: Terminate every running instance in a region. Use with EXTREME caution.
+- name: Terminate EC2 running instances by name
   hosts: local
   become: yes
   vars:
@@ -6,13 +6,13 @@
     - mysql
     - backend
     - frontend
-
   tasks:
-    - name: Delete ec2 insatnces
-      amazon.aws.ec2_instance:
-        name: "{{ item }}"
-        region: us-east-1
-        state: absent
-        filters:
-          instance-state-name: running
-        loop: "{{ instances }}"
+    - name: Find ec2 insatnces by name tag
+      amazon.aws.ec2_instance_info:
+        filter:
+          tag:Name: "{{ item }}"
+      loop: "{{ instances }}"
+      register: ec2_info
+    - name: print ec2_info
+      ansible.builtin.debug:
+        msg: "{{ ec2_info }}"
