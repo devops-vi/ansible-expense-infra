@@ -1,6 +1,6 @@
 - name: create EC2 and R53 for Expense applicatoin
   hosts: local
-  become: yes
+  #become: yes
   connection: local
   vars:
     instances:
@@ -8,13 +8,22 @@
     - backend
     - frontend
   tasks:
-  - name: Create EC2 instance
-    amazon.aws.ec2_insatnce:
-      name: "{{ item }}"
-      instace_type: t3.micro
-      image_id: ami-09c813fb71547fc4f
-      count: 3
-      region: us-east-1
-      vpc_subnet_id: vpc-0060a66dba52e8727
+  # - name: Create EC2 instance
+  #   amazon.aws.ec2_insatnce:
+  #     name: "{{ item }}"
+  #     instace_type: t3.micro
+  #     image_id: ami-09c813fb71547fc4f
+  #     count: 3
+  #     region: us-east-1
+  #     vpc_subnet_id: vpc-0060a66dba52e8727
+  #     loop: "{{ instances }}"
+  #     register: ec2_instances
+    - name: create ec2 instance
+      amazon.aws.ec2_instance:
+        name: "{{ item }}"
+        vpc_subnet_id: vpc-0060a66dba52e8727
+        instance_type: "t3.micro"
+        security_group: sg-088988091b81eae5c
+        image_id: ami-09c813fb71547fc4f
       loop: "{{ instances }}"
       register: ec2_instances
