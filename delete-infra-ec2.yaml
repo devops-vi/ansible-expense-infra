@@ -17,7 +17,7 @@
       ansible.builtin.debug:
         msg: "{{ ec2_info }}"
     - name: Terminate EC2 instances
-      amazon.aws.ec2:
+      amazon.aws.ec2_instance:
         instance_ids: "{{ item.instances[0].instance_id }}"
         state: absent
       when: item.instances | length > 0
