@@ -12,6 +12,7 @@
         filters:
           "tag:Name": "{{ item }}"
           instance-state-name: ["running"]
+          availability-zone: us-east-1
       loop: "{{ instances }}"
       register: ec2_info
     - name: print ec2_info
