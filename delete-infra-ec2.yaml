@@ -9,7 +9,7 @@
   tasks:
     - name: Find ec2 insatnces by name tag
       amazon.aws.ec2_instance_info:
-        filter:
+        filters:
           "tag:Name": "{{ item }}"
           instance-state-name: ["running"]
       loop: "{{ instances }}"
