@@ -6,6 +6,7 @@
     - mysql
     - backend
     - frontend
+    ansible_python_interpreter: /usr/bin/python3.9
   tasks:
     - name: Find ec2 insatnces by name tag
       amazon.aws.ec2_instance_info:
