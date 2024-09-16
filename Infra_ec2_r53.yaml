@@ -7,6 +7,7 @@
     - mysql
     - backend
     - frontend
+    ansible_python_interpreter: /usr/bin/python3.9
   tasks:
     - name: import the required Python library (botocore and boto3)
       ansible.builtin.pip:
@@ -14,7 +15,6 @@
           - botocore
           - boto3
         executable: pip3.9
-        
     - name: Create EC2 instance
       amazon.aws.ec2_instance:
         name: "{{ item }}"
