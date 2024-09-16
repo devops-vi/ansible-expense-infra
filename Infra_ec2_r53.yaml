@@ -8,6 +8,12 @@
     - backend
     - frontend
   tasks:
+    - name: import the required Python library (botocore and boto3)
+      ansible.builtin.pip:
+        name:
+          - botocore
+          - boto3
+        executable: pip3.9
     - name: Create EC2 instance
       amazon.aws.ec2_instance:
         name: "{{ item }}"
@@ -18,12 +24,4 @@
         vpc_subnet_id: vpc-0060a66dba52e8727
       loop: "{{ instances }}"
       register: ec2_instances
-    # - name: create ec2 instance
-    #   amazon.aws.ec2_instance:
-    #     name: "{{ item }}"
-    #     vpc_subnet_id: vpc-0060a66dba52e8727
-    #     instance_type: "t3.micro"
-    #     security_group: "{{ sg_id }}"
-    #     image_id: ami-09c813fb71547fc4f
-    #   loop: "{{ instances }}"
-    #   register: ec2_instances
+    
