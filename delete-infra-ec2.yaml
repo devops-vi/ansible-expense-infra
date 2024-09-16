@@ -10,7 +10,8 @@
     - name: Find ec2 insatnces by name tag
       amazon.aws.ec2_instance_info:
         filter:
-          tag:Name: "{{ item }}"
+          "tag:Name": "{{ item }}"
+          instance-state-name: ["running"]
       loop: "{{ instances }}"
       register: ec2_info
     - name: print ec2_info
