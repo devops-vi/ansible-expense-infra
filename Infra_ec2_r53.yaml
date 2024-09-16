@@ -21,7 +21,7 @@
         image_id: ami-09c813fb71547fc4f
         count: 3
         region: us-east-1
-        vpc_subnet_id: vpc-0060a66dba52e8727
+        vpc_subnet_id: subnet-07bfec4c75466fbda
       loop: "{{ instances }}"
       register: ec2_instances
     
