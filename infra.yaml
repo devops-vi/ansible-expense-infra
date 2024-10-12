@@ -5,13 +5,13 @@
   # move this to vars_files
   vars:
     subnet_id: "subnet-07bfec4c75466fbda" # replace with your subnet id
-    sg_id: "sg-088988091b81eae5c"
+    sg_id: "sg-088988091b81eae5c" # replace your security group ID
     ami_id: "ami-09c813fb71547fc4f"
     instances:
       - mysql
       - backend
       - frontend
-    zone: daws81s.online
+    zone: laven.cloud
   tasks:
     - name: ansible to install boto3 and botocore
       ansible.builtin.pip:
